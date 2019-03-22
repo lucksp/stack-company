@@ -2,13 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/App";
 import { BrowserRouter } from "react-router-dom";
-
-import "../styles/style.scss";
+import { GlobalStyle } from "./styles/GlobalStyles.css";
 
 const render = App =>
   ReactDOM.render(
     <BrowserRouter>
-      <App />
+      <React.Fragment>
+        <GlobalStyle />
+        <App />
+      </React.Fragment>
     </BrowserRouter>,
     document.getElementById("root")
   );
