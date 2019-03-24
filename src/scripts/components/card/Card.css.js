@@ -12,7 +12,7 @@ export default styled.div`
   }
 
   .header {
-    background-color: gray;
+    background-color: #84817a;
     border-radius: 7px 7px 0 0;
     color: #f7f1e3;
   }

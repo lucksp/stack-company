@@ -2,9 +2,30 @@ import React from "react";
 
 import Card from "../../components/card";
 import CompanyCard from "../company/cardGeneral";
+import Forms from "../forms";
 
 // styled
 import StyledHome from "./Home.css";
+import { NewCompanySchema } from "../../helpers/fieldsSchema";
+
+const newCompanyFields = {
+  name: {
+    type: "text",
+    required: true
+  },
+  address: {
+    type: "text",
+    required: true
+  },
+  revenue: {
+    type: "number",
+    required: true
+  },
+  phone: {
+    type: "tel",
+    required: true
+  }
+};
 
 const Home = () => {
   return (
@@ -30,7 +51,11 @@ const Home = () => {
           renderWith={() => (
             <React.Fragment>
               <div className="header">Add Company</div>
-              <div className="main">Adding Company</div>
+              <Forms
+                formName="new-company"
+                fields={newCompanyFields}
+                schema={NewCompanySchema}
+              />
             </React.Fragment>
           )}
         />
