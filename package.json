@@ -21,6 +21,7 @@
     "build": "cross-env webpack --config webpack.config.production.js && NODE_ENV=production node server/server.js"
   },
   "dependencies": {
+    "prop-types": "^15.7.2",
     "react": "^16.8.4",
     "react-delay-render": "^0.1.2",
     "react-dom": "^16.8.4",
