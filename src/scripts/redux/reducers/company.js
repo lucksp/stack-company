@@ -9,6 +9,11 @@ const initialState = {
 
 export default function data(state = state ? state : initialState, action) {
   switch (action.type) {
+    case ActionTypes.COMPANY_ADD:
+      return {
+        ...state,
+        companyData: [...state.companyData, action.payload]
+      };
     default:
       return state;
   }

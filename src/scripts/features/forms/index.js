@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Formik, Field, FieldArray, Form } from "formik";
+import { submitNewCompany } from "../../redux/actions/company";
 
 // styled
 import StyledForms from "./Forms.css";
@@ -24,7 +26,7 @@ class Forms extends Component {
           initialValues={getInitialValues(this.props.fields)}
           validationSchema={this.props.schema}
           onSubmit={values => {
-            console.log(values, " submitted");
+            this.props.submitNewCompany(values);
           }}
           fields={this.props.fields}
           render={({ values, errors, touched, isSubmitting }) => (
@@ -66,4 +68,9 @@ class Forms extends Component {
   }
 }
 
-export default Forms;
+const mapDispatchToProps = { submitNewCompany };
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Forms);
