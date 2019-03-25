@@ -1,7 +1,7 @@
 // here we respond to a dispatch from an action item, then we return updated state to UI
 import ActionTypes from "../ActionTypes";
 
-// data format: { id: null, name: null, address: null, revenue: null, phone: null }
+// data format: {id: null, { id: null, name: null, address: null, revenue: null, phone: null }}
 
 const initialState = {
   companyData: []

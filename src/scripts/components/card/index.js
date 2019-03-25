@@ -13,7 +13,7 @@ const Card = props => {
 };
 
 Card.propTypes = {
-  headerText: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
   renderWith: PropTypes.func.isRequired
 };
 

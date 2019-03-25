@@ -5,7 +5,7 @@ import { randomId } from "../../helpers/common";
 export const submitNewCompany = company => {
   const id = randomId();
   let companyWithId = {
-    ...company,
+    company,
     id
   };
   // typically, with server, would dispatch a "Send" action
