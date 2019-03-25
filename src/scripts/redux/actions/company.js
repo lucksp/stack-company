@@ -4,13 +4,16 @@ import { randomId } from "../../helpers/common";
 
 export const submitNewCompany = company => {
   const id = randomId();
-
   let companyWithId = {
     ...company,
     id
   };
-  return {
-    type: ActionTypes.COMPANY_ADD,
-    payload: companyWithId
+  return function(dispatch, getState) {
+    dispatch({
+      type: ActionTypes.COMPANY_ADD,
+      payload: companyWithId
+    });
+
+    return Promise.resolve("success");
   };
 };

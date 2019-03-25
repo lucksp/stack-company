@@ -9,11 +9,11 @@ const CompanyCard = props => {
   return (
     <StyledCompanyCard>
       <div>
-        {props.data.length ? (
-          <div>{props.data}</div>
-        ) : (
-          "Please add a new company"
-        )}
+        {props.data.length
+          ? props.data.map(item => {
+              return <div key={item.id}>{item.name}</div>;
+            })
+          : "Please add a new company"}
       </div>
     </StyledCompanyCard>
   );
@@ -27,7 +27,7 @@ CompanyCard.propTypes = {
       address: PropTypes.string,
       revenue: PropTypes.string,
       phone: PropTypes.string
-    }).isRequired
+    })
   )
 };
 const mapStateToProps = state => {
