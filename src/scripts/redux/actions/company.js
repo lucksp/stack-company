@@ -8,7 +8,11 @@ export const submitNewCompany = company => {
     ...company,
     id
   };
-  return function(dispatch, getState) {
+  // typically, with server, would dispatch a "Send" action
+  // followed by a fetch to POST data, which would then have a resolve of promise on success/error
+  // which would then dispatch another action, for "succes"
+  // this is when we would reset the form
+  return function(dispatch) {
     dispatch({
       type: ActionTypes.COMPANY_ADD,
       payload: companyWithId
