@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Formik, Field, FieldArray, Form } from "formik";
+import { Formik, Field, FieldArray, Form, withFormik } from "formik";
 import { submitNewCompany } from "../../redux/actions/company";
 
 // styled
@@ -19,62 +19,96 @@ const fieldId = field => `field-${field}`;
 const formName = name => `form-${name}`;
 
 const Forms = props => {
-  const handleSubmit = async (values, { resetForm }) => {
-    await props.submitNewCompany(values).then(response => {
-      if (response === "success") {
-        resetForm();
-      }
-    });
-  };
+  const {
+    values,
+    touched,
+    errors,
+    isSubmitting,
+    handleChange,
+    setFieldValue,
+    handleBlur,
+    handleSubmit,
+    handleReset
+  } = props;
 
   return (
     <StyledForms>
-      <Formik
-        initialValues={getInitialValues(props.fields)}
-        validationSchema={props.schema}
-        onSubmit={handleSubmit}
-        fields={props.fields}
-        render={({ values, errors, touched, isSubmitting }) => (
-          <Form id={formName(props.formName)}>
-            <FieldArray
-              name="field-company"
-              render={props => (
-                <div>
-                  {values &&
-                    Object.keys(values).map((field, index) => (
-                      <div key={index} className="form-item">
-                        <label htmlFor={fieldId(field)}>
-                          {field}
-                          <sup>*</sup>
-                        </label>
-                        <Field
-                          name={field}
-                          id={fieldId(field)}
-                          className={
-                            errors[field] && touched[field] ? "error" : ""
+      <Form id={formName(props.formName)} onSubmit={props.handleSubmit}>
+        <React.Fragment>
+          {values &&
+            Object.keys(values).map((field, index) => {
+              switch (props.fields[field].type) {
+                case "select":
+                  return (
+                    <div key={index} className="form-item">
+                      <label htmlFor={fieldId(field)}>
+                        {field}
+                        <sup>*</sup>
+                      </label>
+                      <select
+                        type={field.type}
+                        name={field}
+                        id={fieldId(field)}
+                        className={
+                          errors[field] && touched[field] ? "error" : ""
+                        }
+                        onChange={handleChange}
+                      >
+                        <option>Please select company</option>
+
+                        {Object.keys(props.fields[field].options).map(
+                          (option, index) => {
+                            return (
+                              <option
+                                value={[option]}
+                                key={index}
+                                onClick={setFieldValue}
+                              >
+                                {
+                                  props.fields[field].options[option].details
+                                    .name
+                                }
+                              </option>
+                            );
                           }
-                        />
-                      </div>
-                    ))}
-                  <button
-                    type="submit"
-                    disabled={isSubmitting || Object.keys(errors).length}
-                  >
-                    Submit
-                  </button>
-                </div>
-              )}
-            />
-          </Form>
-        )}
-      />
+                        )}
+                      </select>
+                    </div>
+                  );
+                default:
+                  return (
+                    <div key={index} className="form-item">
+                      <label htmlFor={fieldId(field)}>
+                        {field}
+                        <sup>*</sup>
+                      </label>
+                      <Field
+                        type={field.type}
+                        name={field}
+                        id={fieldId(field)}
+                        className={
+                          errors[field] && touched[field] ? "error" : ""
+                        }
+                      />
+                    </div>
+                  );
+              }
+            })}
+          <button type="submit" disabled={isSubmitting}>
+            Submit
+          </button>
+        </React.Fragment>
+      </Form>
     </StyledForms>
   );
 };
 
-const mapDispatchToProps = { submitNewCompany };
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(Forms);
+export default withFormik({
+  mapPropsToValues: props => {
+    return getInitialValues(props.fields);
+  },
+  validationSchema: props => props.schema,
+  handleSubmit: (values, props) => {
+    props.props.handleSubmit(values, props.resetForm);
+  }
+})(Forms);
