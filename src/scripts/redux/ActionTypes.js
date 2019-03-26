@@ -1,3 +1,4 @@
 module.exports = {
-  COMPANY_ADD: "COMPANY_ADD"
+  COMPANY_ADD: "COMPANY_ADD",
+  EMPLOYEE_ADD: "EMPLOYEE_ADD"
 };

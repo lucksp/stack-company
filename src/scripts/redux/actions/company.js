@@ -20,15 +20,3 @@ export const submitNewCompany = company => {
     return Promise.resolve("success");
   };
 };
-
-export const getEmployeeCount = id => {
-  return function(dispatch, state) {
-    const employeeState = state().company.companyData.find(company);
-    let count = 0;
-
-    return {
-      type: ActionTypes.COMPANY_COUNT,
-      id
-    };
-  };
-};

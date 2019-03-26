@@ -8,7 +8,11 @@ const App = () => {
   return (
     <Switch>
       <Route exact path="/" component={Home} />
-      <Route exact path="/:id" component={CompanyCardOverview} />
+      <Route
+        exact
+        path="/:id"
+        render={props => <CompanyCardOverview {...props} />}
+      />
     </Switch>
   );
 };

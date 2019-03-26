@@ -1,17 +1,20 @@
 // here we respond to a dispatch from an action item, then we return updated state to UI
 import ActionTypes from "../ActionTypes";
 
-// data format: {[id]: { name: null, address: null, revenue: null, phone: null, count: null } }
+// data format: {id: null, companyId: null, data: { name: null, address: null }
 
-const initialState = {};
+const initialState = {
+  employeeData: []
+};
 
 export default function data(state = state ? state : initialState, action) {
   switch (action.type) {
-    case ActionTypes.COMPANY_ADD:
+    case ActionTypes.EMPLOYEE_ADD:
       return {
         ...state,
-        ...action.payload
+        employeeData: []
       };
+
     default:
       return state;
   }

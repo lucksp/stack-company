@@ -11,10 +11,17 @@ import { createGlobalStyle } from "styled-components";
 // err red: #ff5252;
 
 export const GlobalStyle = createGlobalStyle`
-@import url(‘https://fonts.googleapis.com/css?family=Roboto');
-body{
-    font-family: "Roboto", Arial, sans-serif;
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600');
+
+
+body {
+    font-family: 'Open Sans', sans-serif;
     margin: 24px;
     box-sizing: border-box;
 }
+a {
+    text-decoration: none;
+    color: #34ace0;
+    font-weight: 300;
+  }
 `;

@@ -7,6 +7,13 @@ export default styled.div`
   .footer {
     padding: 8px 16px;
   }
+  .header {
+    display: flex;
+    justify-content: space-between;
+  }
+  .main {
+    padding: 32px;
+  }
   .detail {
     margin-bottom: 8px;
     text-transform: capitalize;
