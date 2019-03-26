@@ -11,35 +11,41 @@ const CompanyCard = props => {
   return (
     <StyledCompanyCard>
       <div>
-        {props.data.length
-          ? props.data.map(item => {
+        {Object.keys(props.data).length
+          ? Object.keys(props.data).map(companyId => {
               const linkTo = {
-                pathname: item.id
+                pathname: companyId
               };
 
               return (
                 <Card
-                  key={item.id}
-                  id={`card-${item.id}`}
+                  key={companyId}
+                  id={`card-${companyId}`}
                   renderWith={() => (
                     <React.Fragment>
-                      <div className="header">{item.company.name}</div>
+                      <div className="header">
+                        {props.data[companyId].details.name}
+                      </div>
                       <div className="main">
                         <div className="company-detail">
-                          {Object.keys(item.company).map((detail, index) => {
-                            return (
-                              <React.Fragment key={index}>
-                                <div className="detail title">{[detail]}</div>
-                                <div className="detail data">
-                                  {item.company[detail]}
-                                </div>
-                              </React.Fragment>
-                            );
-                          })}
+                          {Object.keys(props.data[companyId].details).map(
+                            (detail, index) => {
+                              return (
+                                <React.Fragment key={index}>
+                                  <div className="detail title">{[detail]}</div>
+                                  <div className="detail data">
+                                    {props.data[companyId].details[detail]}
+                                  </div>
+                                </React.Fragment>
+                              );
+                            }
+                          )}
                         </div>
                       </div>
                       <div className="footer">
-                        <Link to={linkTo}>Company Overview</Link>
+                        <Link to={linkTo} params={{ id: companyId }}>
+                          Company Overview
+                        </Link>
                       </div>
                     </React.Fragment>
                   )}
@@ -53,19 +59,20 @@ const CompanyCard = props => {
 };
 
 CompanyCard.propTypes = {
-  data: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
+  data: PropTypes.shape({
+    id: PropTypes.string,
+    details: PropTypes.shape({
       name: PropTypes.string,
       address: PropTypes.string,
       revenue: PropTypes.string,
       phone: PropTypes.string
-    }) //.isRequired
-  )
+    }),
+    count: PropTypes.number
+  }) //.isRequired
 };
 const mapStateToProps = state => {
   return {
-    data: state.company.companyData
+    data: state.company
   };
 };
 export default connect(mapStateToProps)(CompanyCard);
