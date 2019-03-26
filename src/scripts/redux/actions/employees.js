@@ -1,6 +1,7 @@
 // here we respond to an action from the UI, process, and dispatch results to handled in reducer
 import ActionTypes from "../ActionTypes";
 import { randomId } from "../../helpers/common";
+import { addEmployeeToCompany } from "./company";
 
 export const submitNewEmployee = values => {
   const id = randomId();
@@ -16,6 +17,7 @@ export const submitNewEmployee = values => {
       type: ActionTypes.EMPLOYEE_ADD,
       payload: employeeWithId
     });
+    dispatch(addEmployeeToCompany(employeeWithId[id].company));
 
     return Promise.resolve("success");
   };

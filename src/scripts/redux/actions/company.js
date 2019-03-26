@@ -20,3 +20,10 @@ export const submitNewCompany = company => {
     return Promise.resolve("success");
   };
 };
+
+export const addEmployeeToCompany = id => {
+  return {
+    type: ActionTypes.UPDATE_EMPLOYEE_COUNT,
+    payload: id
+  };
+};

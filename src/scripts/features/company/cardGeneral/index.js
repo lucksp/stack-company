@@ -60,14 +60,15 @@ const CompanyCard = props => {
 
 CompanyCard.propTypes = {
   data: PropTypes.shape({
-    id: PropTypes.string,
-    details: PropTypes.shape({
-      name: PropTypes.string,
-      address: PropTypes.string,
-      revenue: PropTypes.string,
-      phone: PropTypes.string
-    }),
-    count: PropTypes.number
+    id: PropTypes.shape({
+      details: PropTypes.shape({
+        name: PropTypes.string,
+        address: PropTypes.string,
+        revenue: PropTypes.string,
+        phone: PropTypes.string
+      }),
+      count: PropTypes.number
+    })
   }) //.isRequired
 };
 const mapStateToProps = state => {
