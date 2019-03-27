@@ -3,7 +3,7 @@ import ActionTypes from "../ActionTypes";
 
 // data format: {[id]: { name: null, address: null, revenue: null, phone: null, count: null } }
 
-const initialState = {};
+export const initialState = {};
 
 export default function data(state = state ? state : initialState, action) {
   switch (action.type) {
