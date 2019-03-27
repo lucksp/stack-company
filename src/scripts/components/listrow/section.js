@@ -1,46 +1,36 @@
-import React, { Component } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 
+// styled
 import StyledSection from "./Section.css";
 
-class Section extends Component {
-  state = {
-    isOpen: true
-  };
-  handleClick = () => {
-    if (this.state.open) {
-      this.setState({
-        open: false
-      });
-    } else {
-      this.setState({
-        open: true
-      });
-    }
-  };
+const Section = ({ sectionTitle, data }) => {
+  return (
+    <StyledSection className="section">
+      <div className="head">{sectionTitle}</div>
+      <div className="wrapper">
+        <div className="content">
+          {Object.keys(data).map((item, index) => {
+            return (
+              <div className="item" key={index}>
+                <div className="item-title">{[item]}</div>
+                <div className="item-content">{data[item]}</div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </StyledSection>
+  );
+};
 
-  render() {
-    return (
-      <StyledSection className="section" isOpen={this.state.isOpen}>
-        <div className="head" onClick={this.handleClick}>
-          {this.props.sectionTitle}
-        </div>
-        <div className="wrapper">
-          {this.state.isOpen && (
-            <div className="content">
-              {Object.keys(this.props.data).map((item, index) => {
-                return (
-                  <div className="item">
-                    <div className="item-title">{[item]}</div>
-                    <div className="item-content">{this.props.data[item]}</div>
-                  </div>
-                );
-              })}
-            </div>
-          )}
-        </div>
-      </StyledSection>
-    );
-  }
-}
+Section.propTypes = {
+  sectionTitle: PropTypes.string.isRequired,
+  data: PropTypes.shape({
+    name: PropTypes.string,
+    address: PropTypes.string,
+    company: PropTypes.string
+  }).isRequired
+};
 
 export default Section;

@@ -1,5 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
+
 import Card from "../../components/card";
 import CompanyCard from "../company/cardGeneral";
 import Forms from "../forms";
@@ -129,6 +131,20 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = { submitNewCompany, submitNewEmployee };
+
+Home.propTypes = {
+  companies: PropTypes.shape({
+    id: PropTypes.shape({
+      details: PropTypes.shape({
+        name: PropTypes.string,
+        address: PropTypes.string,
+        revenue: PropTypes.string,
+        phone: PropTypes.string
+      }),
+      count: PropTypes.number
+    })
+  })
+};
 
 export default connect(
   mapStateToProps,

@@ -1,7 +1,6 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Formik, Field, FieldArray, Form, withFormik } from "formik";
-import { submitNewCompany } from "../../redux/actions/company";
+import React from "react";
+import { Field, Form, withFormik } from "formik";
+import PropTypes from "prop-types";
 
 // styled
 import StyledForms from "./Forms.css";
@@ -16,7 +15,7 @@ const getInitialValues = passedFields => {
 
 const fieldId = field => `field-${field}`;
 
-const formName = name => `form-${name}`;
+const setFormName = name => `form-${name}`;
 
 const Forms = props => {
   const {
@@ -33,7 +32,7 @@ const Forms = props => {
 
   return (
     <StyledForms>
-      <Form id={formName(props.formName)} onSubmit={props.handleSubmit}>
+      <Form id={setFormName(props.formName)} onSubmit={props.handleSubmit}>
         <React.Fragment>
           {values &&
             Object.keys(values).map((field, index) => {
@@ -52,6 +51,9 @@ const Forms = props => {
                             *
                           </sup>
                         </label>
+                        {errors[field] && touched[field] ? (
+                          <span className="message">{errors[field]}</span>
+                        ) : null}
                       </div>
                       <select
                         type={field.type}
@@ -120,6 +122,13 @@ const Forms = props => {
       </Form>
     </StyledForms>
   );
+};
+
+Forms.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+  formName: PropTypes.string.isRequired,
+  fields: PropTypes.object.isRequired,
+  schema: PropTypes.object.isRequired
 };
 
 export default withFormik({

@@ -31,7 +31,8 @@ export default styled.div`
       }
     }
 
-    input {
+    input,
+    select {
       border: 1px solid #84817a;
       border-radius: 4px;
       height: 22px;
@@ -39,6 +40,10 @@ export default styled.div`
       &.error {
         border: 1px solid #ff5252;
       }
+    }
+    select {
+      height: 26px;
+      background-color: #fff;
     }
 
     &:last-of-type {

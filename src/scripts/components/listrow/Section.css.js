@@ -7,7 +7,6 @@ export default styled.div`
     font-weight: 600;
     font-size: 16px;
     padding: 16px;
-    cursor: pointer;
   }
   .wrapper {
     .content {
