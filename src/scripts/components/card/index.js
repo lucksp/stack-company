@@ -6,7 +6,7 @@ import StyledCard from "./Card.css";
 
 const Card = props => {
   return (
-    <StyledCard className="wrapper" id={props.id}>
+    <StyledCard className="wrapper" id={props.id} cardType={props.cardType}>
       {props.renderWith(props.data)}
     </StyledCard>
   );
@@ -14,7 +14,8 @@ const Card = props => {
 
 Card.propTypes = {
   id: PropTypes.string.isRequired,
-  renderWith: PropTypes.func.isRequired
+  renderWith: PropTypes.func.isRequired,
+  cardType: PropTypes.string
 };
 
 export default Card;

@@ -18,6 +18,7 @@ body {
     font-family: 'Open Sans', sans-serif;
     margin: 24px;
     box-sizing: border-box;
+    max-height: 100vh;
 }
 a {
     text-decoration: none;

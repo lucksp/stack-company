@@ -15,30 +15,37 @@ import { submitNewEmployee } from "../../redux/actions/employees";
 
 const newCompanyFields = {
   name: {
-    type: "text"
+    type: "text",
+    isRequired: true
   },
   address: {
-    type: "text"
+    type: "text",
+    isRequired: true
   },
   revenue: {
-    type: "number"
+    type: "number",
+    isRequired: true
   },
   phone: {
-    type: "tel"
+    type: "tel",
+    isRequired: true
   }
 };
 
 const newEmployeeFields = companies => {
   return {
     name: {
-      type: "text"
+      type: "text",
+      isRequired: true
     },
     address: {
-      type: "text"
+      type: "text",
+      isRequired: true
     },
     company: {
       type: "select",
-      options: companies
+      options: companies,
+      isRequired: true
     }
   };
 };

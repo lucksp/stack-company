@@ -6,7 +6,6 @@ export default styled.div`
   border: 1px solid #d1ccc0;
 
   .header,
-  .main,
   .footer {
     padding: 8px;
   }
@@ -19,6 +18,16 @@ export default styled.div`
 
   .main {
     border-top: 1px solid #d1ccc0;
+    padding: ${props => {
+      switch (props.cardType) {
+        case "employee":
+          return "16px;";
+        case "company":
+          return "32px;";
+        default:
+          return "8px;";
+      }
+    }};
   }
   .footer {
     border-top: 1px solid #d1ccc0;

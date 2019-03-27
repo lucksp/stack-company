@@ -12,7 +12,12 @@ export default styled.div`
     justify-content: space-between;
   }
   .main {
-    padding: 32px;
+    display: flex;
+  }
+  .details-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
   }
   .detail {
     margin-bottom: 8px;

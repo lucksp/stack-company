@@ -7,15 +7,27 @@ export default styled.div`
     flex-flow: column nowrap;
     padding-bottom: 16px;
 
-    label {
-      text-transform: uppercase;
-      font-size: 14px;
-      color: #84817a;
+    .wrapper-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
 
-      sup {
-        &.isRequired {
-          color: #ff5252;
+      label {
+        text-transform: uppercase;
+        font-size: 14px;
+        color: #84817a;
+
+        sup {
+          &.required {
+            margin-left: 1px;
+            color: #ff5252;
+          }
         }
+      }
+      .message {
+        color: #ff5252;
+        font-size: 12px;
+        text-transform: uppercase;
       }
     }
 
@@ -28,6 +40,7 @@ export default styled.div`
         border: 1px solid #ff5252;
       }
     }
+
     &:last-of-type {
       margin-bottom: 16px;
     }

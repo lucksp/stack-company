@@ -14,6 +14,12 @@ const getInitialValues = passedFields => {
   return initialItems;
 };
 
+const formatFieldOnChange = (e, value) => {
+  if (value === "tel") {
+    debugger;
+  }
+};
+
 const fieldId = field => `field-${field}`;
 
 const formName = name => `form-${name}`;
@@ -41,10 +47,18 @@ const Forms = props => {
                 case "select":
                   return (
                     <div key={index} className="form-item">
-                      <label htmlFor={fieldId(field)}>
-                        {field}
-                        <sup>*</sup>
-                      </label>
+                      <div className="wrapper-label">
+                        <label htmlFor={fieldId(field)}>
+                          {field}
+                          <sup
+                            className={
+                              props.fields[field].isRequired ? "required" : ""
+                            }
+                          >
+                            *
+                          </sup>
+                        </label>
+                      </div>
                       <select
                         type={field.type}
                         name={field}
@@ -78,12 +92,23 @@ const Forms = props => {
                 default:
                   return (
                     <div key={index} className="form-item">
-                      <label htmlFor={fieldId(field)}>
-                        {field}
-                        <sup>*</sup>
-                      </label>
+                      <div className="wrapper-label">
+                        <label htmlFor={fieldId(field)}>
+                          {field}
+                          <sup
+                            className={
+                              props.fields[field].isRequired ? "required" : ""
+                            }
+                          >
+                            *
+                          </sup>
+                        </label>
+                        {errors[field] && touched[field] ? (
+                          <span className="message">{errors[field]}</span>
+                        ) : null}
+                      </div>
                       <Field
-                        type={field.type}
+                        type={props.fields[field].type}
                         name={field}
                         id={fieldId(field)}
                         className={

@@ -2,10 +2,21 @@
 import ActionTypes from "../ActionTypes";
 import { randomId } from "../../helpers/common";
 
+function convertToValidPhoneNumber(text) {
+  return (text = text
+    .replace(/\D+/g, "")
+    .replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3"));
+}
+
 export const submitNewCompany = company => {
   const id = randomId();
+  let copy = { ...company };
+
+  copy.revenue = `$${copy.revenue}`;
+  copy.phone = convertToValidPhoneNumber(copy.phone);
+
   let companyWithId = {
-    [id]: { details: company, count: 0 }
+    [id]: { details: copy, count: 0 }
   };
   // typically, with server, would dispatch a "Send" action
   // followed by a fetch to POST data, which would then have a resolve of promise on success/error
