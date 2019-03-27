@@ -35,8 +35,15 @@ app.get("/", function(req, res) {
   res.sendFile(path.join(__dirname, ".." + useFolder + "index.html"));
 });
 
-app.get("/api/data", (req, res) => {
-  res.send("hi from server"); // replace me with real data
+app.use((req, res, next) => {
+  const error = new Error("Not Found"); //Error object
+  error.status = 404;
+
+  //res.render('./404'); by default in express applications you would render a 404 page
+
+  res.status(200).redirect("/");
+
+  next(error);
 });
 
 app.listen(port, function(err) {

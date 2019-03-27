@@ -1,10 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const autoprefixer = require("autoprefixer");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-
-const devMode = process.env.NODE_ENV !== "production";
 
 module.exports = {
   entry: {
@@ -44,24 +40,6 @@ module.exports = {
             }
           }
         ]
-      },
-      {
-        test: /\.(sa|sc|c)ss$/,
-        loaders: [
-          { loader: devMode ? "style-loader" : MiniCssExtractPlugin.loader },
-          { loader: "css-loader" },
-          {
-            loader: "postcss-loader",
-            options: {
-              plugins: () => [
-                autoprefixer({
-                  browsers: "last 2 versions"
-                })
-              ]
-            }
-          },
-          { loader: "sass-loader" }
-        ]
       }
     ]
   },
@@ -69,10 +47,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "public/index.html",
       favicon: "public/assets/img/favicon.ico"
-    }),
-    new MiniCssExtractPlugin({
-      filename: "[name].css"
-    }),
-    new OptimizeCSSAssetsPlugin({})
+    })
   ]
 };
