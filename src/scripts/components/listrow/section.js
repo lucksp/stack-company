@@ -29,7 +29,7 @@ class Section extends Component {
             <div className="content">
               {Object.keys(this.props.data).map((item, index) => {
                 return (
-                  <div className="item">
+                  <div className="item" key={index}>
                     <div className="item-title">{[item]}</div>
                     <div className="item-content">{this.props.data[item]}</div>
                   </div>
