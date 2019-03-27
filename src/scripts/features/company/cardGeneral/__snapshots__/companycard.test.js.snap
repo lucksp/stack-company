@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CompanyCard /> has a snapshot 1`] = `
+<Fragment>
+  <div
+    className="header"
+  >
+    test company
+  </div>
+  <div
+    className="main"
+  >
+    <div
+      className="company-detail"
+    >
+      <div
+        className="detail title"
+      >
+        name
+      </div>
+      <div
+        className="detail data"
+      >
+        test company
+      </div>
+      <div
+        className="detail title"
+      >
+        address
+      </div>
+      <div
+        className="detail data"
+      >
+        123 main
+      </div>
+      <div
+        className="detail title"
+      >
+        revenue
+      </div>
+      <div
+        className="detail data"
+      >
+        $100
+      </div>
+      <div
+        className="detail title"
+      >
+        phone
+      </div>
+      <div
+        className="detail data"
+      >
+        (720) 201-0040
+      </div>
+    </div>
+  </div>
+  <div
+    className="footer"
+  >
+    <Link
+      params={
+        Object {
+          "id": "123abc",
+        }
+      }
+      replace={false}
+      to={
+        Object {
+          "pathname": "123abc",
+        }
+      }
+    >
+      Company Overview
+    </Link>
+  </div>
+</Fragment>
+`;

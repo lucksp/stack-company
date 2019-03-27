@@ -7,7 +7,7 @@ import StyledCompanyCard from "./CompanyCard.css";
 import PropTypes from "prop-types";
 import Card from "../../../components/card";
 
-const CompanyCard = props => {
+export const CompanyCard = props => {
   return (
     <StyledCompanyCard>
       <div>
@@ -69,11 +69,13 @@ CompanyCard.propTypes = {
       }),
       count: PropTypes.number
     })
-  }) //.isRequired
+  }).isRequired
 };
+
 const mapStateToProps = state => {
   return {
     data: state.company
   };
 };
+
 export default connect(mapStateToProps)(CompanyCard);
