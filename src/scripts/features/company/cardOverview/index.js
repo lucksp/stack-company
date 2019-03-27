@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
@@ -59,6 +59,27 @@ const mapStateToProps = (state, otherProps) => {
     companyOverview: state.company[id],
     employees: state.employees
   };
+};
+
+CompanyCardOverview.propTypes = {
+  companyOverview: PropTypes.shape({
+    id: PropTypes.shape({
+      details: PropTypes.shape({
+        name: PropTypes.string,
+        address: PropTypes.string,
+        revenue: PropTypes.string,
+        phone: PropTypes.string
+      }),
+      count: PropTypes.number
+    })
+  }).isRequired,
+  employees: PropTypes.shape({
+    id: PropTypes.shape({
+      name: PropTypes.string,
+      address: PropTypes.string,
+      company: PropTypes.string
+    })
+  }).isRequired
 };
 
 export default connect(mapStateToProps)(CompanyCardOverview);
