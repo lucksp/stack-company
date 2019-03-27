@@ -14,12 +14,6 @@ const getInitialValues = passedFields => {
   return initialItems;
 };
 
-const formatFieldOnChange = (e, value) => {
-  if (value === "tel") {
-    debugger;
-  }
-};
-
 const fieldId = field => `field-${field}`;
 
 const formName = name => `form-${name}`;
